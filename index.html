@@ -16,16 +16,14 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
     </head>
-                <!-- Global site tag (gtag.js) - Google Analytics -->
+        <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-54516992-1"></script>
         <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
-
         gtag('config', 'UA-54516992-1');
 </script>
-
     <body id="page-top">
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
@@ -147,11 +145,25 @@
                 </div>
             </div>
         </section>
-        <!-- About-->
+        <!--Last Updated Time-->
+        <section class="page-section bg-light" >
+            <div class="container">
+                <div class="text-center">
+                    <h2 class="section-heading text-uppercase">Last Updated Time</h2>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <h4  id="date"></h4>
+                </div>
+                <div class="row d-flex justify-content-center">
+                    <h4  id="time"></h4>
+                </div>
+            </div>
+        </section>
+        <!--  About  -->
         <section class="page-section bg-light" id="about">
             <div class="container">
                 <div class="text-center">
-                    <h2 class="section-heading text-uppercase"> About Me </h2>
+                    <h2 class="section-heading text-uppercase">  About Me </h2>
                 </div>
                 <div class="row d-flex justify-content-center">
                     <div class="col-lg-4">
@@ -163,7 +175,6 @@
                         </div>
                     </div>
                 </div>
-                
             </div>
         </section>
         <!-- Footer-->
@@ -186,12 +197,12 @@
         <script src="js/scripts.js"></script>
     </body>
     <script>
-        
     $(document).ready(function(){
         $.ajax({
             url: "https://hpb.health.gov.lk/api/get-current-statistical",
             success: function(data){
-                console.log(data);
+                var date = data.data.update_date_time;
+                var date = date.split(" ");
                 $('#localTotalConfirmedCases').html(data.data.local_total_cases);
                 $('#local_active_cases').html(data.data.local_active_cases);
                 $('#local_new_cases').html(data.data.local_new_cases);
@@ -203,6 +214,8 @@
                 $('#global_deaths').html(data.data.global_deaths);
                 $('#global_new_deaths').html(data.data.global_new_deaths);
                 $('#global_recovered').html(data.data.global_recovered);
+                $('#date').html(date[0]);
+                $('#time').html(date[1]);
             }
           });
     })
