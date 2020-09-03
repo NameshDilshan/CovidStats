@@ -1,3 +1,2 @@
-# Covid19StatsWebPage
 
-Released in https://covidsrilanka.000webhostapp.com/ 
+Covid19StatsWebPage.github.io
